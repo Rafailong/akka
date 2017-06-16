@@ -291,7 +291,8 @@ object PersistentFSM {
    */
   // FIXME: what about the cancellable?
   @InternalApi
-  private[persistence] final case class Timer(name: String, msg: Any, repeat: Boolean, generation: Int)(context: ActorContext)
+  private[persistence] final case class Timer(name: String, msg: Any, repeat: Boolean, generation: Int,
+                                              owner: AnyRef)(context: ActorContext)
     extends NoSerializationVerificationNeeded {
     private var ref: Option[Cancellable] = _
     private val scheduler = context.system.scheduler

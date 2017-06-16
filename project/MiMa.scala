@@ -1227,6 +1227,14 @@ object MiMa extends AutoPlugin {
         // #23025 OversizedPayloadException DeltaPropagation
         ProblemFilters.exclude[ReversedMissingMethodProblem]("akka.cluster.ddata.DeltaPropagationSelector.maxDeltaSize"),
         
+        // #15733 Timers
+        ProblemFilters.exclude[DirectMissingMethodProblem]("akka.persistence.fsm.PersistentFSM#Timer.apply"),
+        ProblemFilters.exclude[DirectMissingMethodProblem]("akka.persistence.fsm.PersistentFSM#Timer.copy"),
+        ProblemFilters.exclude[DirectMissingMethodProblem]("akka.persistence.fsm.PersistentFSM#Timer.this"),
+        ProblemFilters.exclude[DirectMissingMethodProblem]("akka.actor.FSM#Timer.copy"),
+        ProblemFilters.exclude[DirectMissingMethodProblem]("akka.actor.FSM#Timer.this"),
+        ProblemFilters.exclude[DirectMissingMethodProblem]("akka.actor.FSM#Timer.apply"),  
+          
         // #23023 added a new overload with implementation to trait, so old transport implementations compiled against
         // older versions will be missing the method. We accept that incompatibility for now.
         ProblemFilters.exclude[ReversedMissingMethodProblem]("akka.remote.transport.AssociationHandle.disassociate")
